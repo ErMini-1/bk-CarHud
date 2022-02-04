@@ -40,9 +40,15 @@ JB = {
                     elseif(vc == 13) then
                         inBike = true
                     end
+                    local fuelLevel = 0
+                    if IsPedInAnyVehicle(JB.playerPed()) then
+                        fuelLevel = GetVehicleFuelLevel(JB.getVehicle())
+                    else
+                        fuelLevel = 0
+                    end
                     JB.sendNUI({
                         action = "speedometer";
-                        fuel   = GetVehicleFuelLevel(JB.getVehicle());
+                        fuel   = fuelLevel;
                         damage = GetVehicleEngineHealth(JB.getVehicle());
                         engine    = GetVehicleCurrentGear(JB.getVehicle());
                         on = GetIsVehicleEngineRunning(JB.getVehicle());
